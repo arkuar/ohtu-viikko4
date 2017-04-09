@@ -29,32 +29,53 @@ public class Stepdefs {
         element.click();
     }
 
-    @When("^correct username \"([^\"]*)\" and password \"([^\"]*)\" are entered")
+    @Given("^user with username \"([^\"]*)\" with password \"([^\"]*)\" is successfully created$")
+    public void user_with_username_with_password_is_successfully_created(String username, String password) throws Throwable {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+        createUserWith(username, password, password);
+    }
+
+    @Given("^user with username \"([^\"]*)\" and password \"([^\"]*)\" is unsuccessfully created$")
+    public void user_with_username_and_password_is_unsuccessfully_created(String username, String password) throws Throwable {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));
+        element.click();
+        createUserWith(username, password, password);
+    }
+
+    @When("^username \"([^\"]*)\" and password \"([^\"]*)\" are given$")
+    public void username_and_password_are_given(String username, String password) throws Throwable {
+        logInWith(username, password);
+    }
+
+    @When("^correct username \"([^\"]*)\" and password \"([^\"]*)\" are entered$")
     public void correct_username_and_password_are_entered(String username, String password) throws Throwable {
         createUserWith(username, password, password);
     }
 
-    @When("^invalid username \"([^\"]*)\" and valid password \"([^\"]*)\" are entered")
+    @When("^invalid username \"([^\"]*)\" and valid password \"([^\"]*)\" are entered$")
     public void invalid_username_and_valid_password_are_entered(String username, String password) throws Throwable {
         createUserWith(username, password, password);
     }
 
-    @When("^correct username \"([^\"]*)\" and too short password \"([^\"]*)\" are entered")
+    @When("^correct username \"([^\"]*)\" and too short password \"([^\"]*)\" are entered$")
     public void correct_username_and_too_short_password_are_entered(String username, String password) throws Throwable {
         createUserWith(username, password, password);
     }
 
-    @When("^correct username \"([^\"]*)\" and invalid password \"([^\"]*)\" are entered")
+    @When("^correct username \"([^\"]*)\" and invalid password \"([^\"]*)\" are entered$")
     public void correct_username_and_invalid_password_are_entered(String username, String password) throws Throwable {
         createUserWith(username, password, password);
     }
 
-    @When("^taken username \"([^\"]*)\" and valid password \"([^\"]*)\" are entered")
+    @When("^taken username \"([^\"]*)\" and valid password \"([^\"]*)\" are entered$")
     public void taken_username_and_valid_password_are_entered(String username, String password) throws Throwable {
         createUserWith(username, password, password);
     }
 
-    @When("^correct username \"([^\"]*)\" and password \"([^\"]*)\" and password confirmation \"([^\"]*)\" are entered")
+    @When("^correct username \"([^\"]*)\" and password \"([^\"]*)\" and password confirmation \"([^\"]*)\" are entered$")
     public void correct_username_and_password_and_password_confirmation_are_entered(String username, String password, String passwordConfirmation) throws Throwable {
         createUserWith(username, password, passwordConfirmation);
     }
@@ -79,7 +100,7 @@ public class Stepdefs {
         pageHasContent("Welcome to Ohtu Application!");
     }
 
-    @Then("^user is not created and error \"([^\"]*)\" is reported")
+    @Then("^user is not created and error \"([^\"]*)\" is reported$")
     public void user_is_not_created_and_error_is_reported(String error) throws Throwable {
         pageHasContent(error);
     }
