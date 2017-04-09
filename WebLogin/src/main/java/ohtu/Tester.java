@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class Tester {
 
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Chromedriver\\chromedriver.exe");
-
+        ChromeDriverManager.getInstance().setup();
         WebDriver driver = new ChromeDriver();
 
         driver.get("http://localhost:4567");
@@ -120,7 +120,7 @@ public class Tester {
         element = driver.findElement(By.linkText("continue to application mainpage"));
         element.click();
         sleep(2);
-        
+
         element = driver.findElement(By.linkText("logout"));
         element.click();
         sleep(3);
